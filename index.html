@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Status</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #0b0f19;
+        color: #e0e0e0;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-shadow: 0 0 1px #999;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+        font-size: 2.4rem;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .status-button {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+        margin-bottom: 14px;
+
+        background: #111624;
+        border: 1px solid transparent;
+        border-radius: 10px;
+
+        font-size: 1.3rem;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+
+        box-shadow: 0 0 12px #00000066;
+        transition: 0.2s ease;
+    }
+
+    .status-button:hover {
+        transform: translateX(6px);
+    }
+
+    /* Status colors */
+    .operational {
+        color: #00ff88;
+        border-color: #00ff6a55;
+        box-shadow: 0 0 12px #00ff6a33;
+    }
+
+    .operational:hover {
+        border-color: #00ff6a;
+        box-shadow: 0 0 22px #00ff6a;
+    }
+
+    .degraded {
+        color: #ffd966;
+        border-color: #ffd96655;
+        box-shadow: 0 0 12px #ffd96633;
+    }
+
+    .degraded:hover {
+        border-color: #ffd966;
+        box-shadow: 0 0 22px #ffd966;
+    }
+
+    .outage {
+        color: #ff6b6b;
+        border-color: #ff6b6b55;
+        box-shadow: 0 0 12px #ff6b6b33;
+    }
+
+    .outage:hover {
+        border-color: #ff6b6b;
+        box-shadow: 0 0 22px #ff6b6b;
+    }
+
+    @media (max-width: 500px) {
+        .status-button {
+            font-size: 1.1rem;
+            padding: 14px 16px;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>System Status</h1>
+
+<div class="container">
+    <a class="status-button operational" href="/kervian.html">
+        kervian.com — Operational
+    </a>
+
+    <a class="status-button operational" href="/games.html">
+        games.kervian.com — Operational
+    </a>
+
+    <a class="status-button degraded" href="/lmc.html">
+        lmc.kervian.com — Degraded
+    </a>
+
+    <a class="status-button outage" href="/savethepast.html">
+        savethepast.kervian.com — Outage
+    </a>
+</div>
+
+</body>
+</html>
