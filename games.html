@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- =========================
+     PAGE TITLE (EDIT THIS)---------------------------------------------TODO
+     ========================= -->
+<title>Games Site Status</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #0b0f19;
+        color: #e0e0e0;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    
+    .card {
+        background: #111624;
+        border-radius: 14px;
+        padding: 22px 26px;
+        margin-bottom: 28px;
+        border: 1px solid transparent;
+    }
+
+    .operational {
+        border-color: #00ff6a66;
+        box-shadow: 0 0 18px #00ff6a55;
+    }
+
+    .degraded {
+        border-color: #ffd96666;
+        box-shadow: 0 0 18px #ffd96655;
+    }
+
+    .outage {
+        border-color: #ff6b6b66;
+        box-shadow: 0 0 18px #ff6b6b55;
+    }
+
+    .title-card h1 {
+        margin: 0;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+
+    .status-text {
+        margin-top: 10px;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        opacity: 0.9;
+    }
+
+    .description-card {
+        text-align: left;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .description-card h2 {
+        margin-top: 0;
+        font-size: 1.4rem;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+    }
+
+    .finish-time {
+        margin-top: 20px;
+        font-size: 0.95rem;
+        opacity: 0.8;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ======================================
+         TITLE / STATUS CARD
+         Change class to: ------------------------------------------------ TODO
+         operational | degraded | outage
+         ====================================== -->
+    <div class="card title-card operational">
+        <h1>games.kervian.com</h1>
+        <div class="status-text">
+            Operational
+        </div>
+    </div>
+
+    <!-- ======================================
+         DESCRIPTION CARD
+         ====================================== -->
+    <div class="card description-card degraded">
+        <h2>Description</h2>
+      
+        <p>
+           A Operational place for allntue games I make
+        </p>
+
+        <div class="finish-time">
+            <!-- ---------------------------------------------------------- TODO --->
+            <!-- estimated resolution: YYYY-MM-DD HH:MM -->
+            <!-- OR -->
+            Resolved at: 2025-11-11 15:30
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
