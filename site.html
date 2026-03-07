@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Status</title>
+  <style>
+    html, body { margin: 0; background: #000; color: #fff; font-family: sans-serif; }
+    .site-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
+
+    .site-header {
+      background: #111;
+      box-shadow: 0 0 20px #00ff00;
+      border-radius: 0.5rem;
+      padding: 0 1rem;
+      height: 60px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-inner a { color: #fff; text-decoration: none; font-weight: 500; }
+    .header-inner a:hover { color: #00ff00; }
+    .header-title { opacity: 0.65; font-size: 0.95rem; }
+
+    .site-main { flex: 1; padding: 3rem 1rem 2rem; text-align: center; }
+
+    .container { max-width: 700px; margin: 0 auto; }
+
+    .card {
+      background: #111;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 28px;
+      border: 1px solid transparent;
+    }
+
+    .operational { border-color: rgba(0,255,0,0.4);     box-shadow: 0 0 18px rgba(0,255,0,0.25); }
+    .degraded    { border-color: rgba(255,217,102,0.4); box-shadow: 0 0 18px rgba(255,217,102,0.25); }
+    .outage      { border-color: rgba(255,107,107,0.4); box-shadow: 0 0 18px rgba(255,107,107,0.25); }
+
+    .title-card h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+
+    .status-text { margin-top: 10px; font-size: 1.1rem; letter-spacing: 0.5px; }
+    .operational .status-text { color: #00ff00; }
+    .degraded    .status-text { color: #ffd966; }
+    .outage      .status-text { color: #ff6b6b; }
+
+    .description-card { text-align: left; font-size: 1.05rem; line-height: 1.6; }
+    .description-card h2 { margin-top: 0; font-size: 1.4rem; letter-spacing: 0.5px; }
+
+    .note { margin-top: 20px; font-size: 0.95rem; opacity: 0.7; }
+
+    .not-found { opacity: 0.6; margin-top: 3rem; }
+
+    .site-footer {
+      padding: 1.5rem 1rem;
+      background: #111;
+      box-shadow: 0 0 10px #00ff00;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .site-footer a { color: #fff; text-decoration: none; opacity: 0.8; }
+    .site-footer a:hover { opacity: 1; text-decoration: underline; }
+
+    @media (max-width: 600px) { .site-footer { flex-direction: column; gap: 0.75rem; } }
+  </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/">&larr; Status</a>
+      <span class="header-title" id="header-name"></span>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="container" id="content"></div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://kervian.com">kervian.com</a>
+    <span>&copy; 2026 Bennett</span>
+    <a href="mailto:info@kervian.com">info@kervian.com</a>
+  </footer>
+
+</div>
+
+<script src="/data.js"></script>
+<script>
+const labels = { operational: "Operational", degraded: "Degraded", outage: "Outage" };
+
+const params = new URLSearchParams(location.search);
+const name   = params.get("name");
+const site   = SITES.find(s => s.name === name);
+const content = document.getElementById("content");
+
+if (!site) {
+  document.title = "Site Not Found";
+  content.innerHTML = `<p class="not-found">Site "${name || ""}" not found. <a href="/" style="color:#00ff00">Back to status</a></p>`;
+} else {
+  document.title = `${site.name} Status`;
+  document.getElementById("header-name").textContent = site.name;
+
+  const label = labels[site.status] || site.status;
+
+  content.innerHTML = `
+    <div class="card title-card ${site.status}">
+      <h1>${site.name}</h1>
+      <div class="status-text">${label}</div>
+    </div>
+    <div class="card description-card ${site.status}">
+      <h2>Description</h2>
+      <p>${site.description}</p>
+      ${site.note ? `<div class="note">${site.note}</div>` : ""}
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>

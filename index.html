@@ -1,131 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kervian Network Status</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kervian Network Status</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
 
-<style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #0b0f19;
-        color: #e0e0e0;
-        padding: 50px 20px;
-        text-align: center;
+    .site-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .site-header {
+      background: #111;
+      box-shadow: 0 0 20px #00ff00;
+      border-radius: 0.5rem;
+      padding: 0 1rem;
+      height: 60px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-inner a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 0.5rem;
+    }
+
+    .header-inner a:hover {
+      color: #00ff00;
+    }
+
+    .header-title {
+      opacity: 0.65;
+      font-size: 0.95rem;
+    }
+
+    /* Main */
+    .site-main {
+      flex: 1;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
     }
 
     h1 {
-        color: #ffffff;
-        text-shadow: 0 0 1px #999;
-        margin-bottom: 40px;
-        letter-spacing: 1px;
-        font-size: 2.4rem;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 2.5rem;
     }
 
+    /* Status list */
     .container {
-        width: 100%;
-        max-width: 500px;
-        margin: 0 auto;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
     .status-button {
-        display: block;
-        width: 100%;
-        padding: 16px 20px;
-        margin-bottom: 14px;
-
-        background: #111624;
-        border: 1px solid transparent;
-        border-radius: 10px;
-
-        font-size: 1.3rem;
-        letter-spacing: 0.5px;
-        text-decoration: none;
-
-        box-shadow: 0 0 12px #00000066;
-        transition: 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      background: #111;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .status-button:hover {
-        transform: translateX(6px);
+      transform: translateX(6px);
     }
 
-    /* Status colors */
+    .status-label {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     .operational {
-        color: #00ff88;
-        border-color: #00ff6a55;
-        box-shadow: 0 0 12px #00ff6a33;
+      border-color: rgba(0, 255, 0, 0.35);
+      box-shadow: 0 0 12px rgba(0, 255, 0, 0.2);
     }
 
     .operational:hover {
-        border-color: #00ff6a;
-        box-shadow: 0 0 22px #00ff6a;
+      border-color: #00ff00;
+      box-shadow: 0 0 22px #00ff00;
+    }
+
+    .operational .status-label {
+      color: #00ff00;
     }
 
     .degraded {
-        color: #ffd966;
-        border-color: #ffd96655;
-        box-shadow: 0 0 12px #ffd96633;
+      border-color: rgba(255, 217, 102, 0.35);
+      box-shadow: 0 0 12px rgba(255, 217, 102, 0.2);
     }
 
     .degraded:hover {
-        border-color: #ffd966;
-        box-shadow: 0 0 22px #ffd966;
+      border-color: #ffd966;
+      box-shadow: 0 0 22px #ffd966;
+    }
+
+    .degraded .status-label {
+      color: #ffd966;
     }
 
     .outage {
-        color: #ff6b6b;
-        border-color: #ff6b6b55;
-        box-shadow: 0 0 12px #ff6b6b33;
+      border-color: rgba(255, 107, 107, 0.35);
+      box-shadow: 0 0 12px rgba(255, 107, 107, 0.2);
     }
 
     .outage:hover {
-        border-color: #ff6b6b;
-        box-shadow: 0 0 22px #ff6b6b;
+      border-color: #ff6b6b;
+      box-shadow: 0 0 22px #ff6b6b;
     }
 
-    @media (max-width: 500px) {
-        .status-button {
-            font-size: 1.1rem;
-            padding: 14px 16px;
-        }
-        h1 {
-            font-size: 2rem;
-        }
+    .outage .status-label {
+      color: #ff6b6b;
     }
-</style>
+
+    /* Footer */
+    .site-footer {
+      padding: 1.5rem 1rem;
+      background: #111;
+      box-shadow: 0 0 10px #00ff00;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .site-footer a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .site-footer a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .kervian-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #00ff00;
+      text-decoration: none;
+      font-size: 0.95rem;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+
+    .kervian-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 520px) {
+      .status-button { font-size: 1rem; padding: 14px 16px; }
+      h1 { font-size: 2rem; }
+      .site-footer { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<h1>System Status</h1>
+<div class="site-wrapper">
 
-<div class="container">
-    <a class="status-button degraded" href="/kervian">
-        kervian.com — Degraded
-    </a>
-    <a class="status-button operational" href="/games">
-        games.kervian.com — Operational
-    </a>
-    
-    <a class="status-button operational" href="/build">
-        build.kervian.com — Operational
-    </a>
-    
-    <a class="status-button operational" href="/projects">
-        projects.kervian.com — Operational
-    </a>
-    
-    <a class="status-button operational" href="/savethepast">
-        savethepast.kervian.com — Operational
-    </a>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="header-title">status.kervian.com</span>
+      <nav>
+        <a href="https://kervian.com">kervian.com</a>
+      </nav>
+    </div>
+  </header>
 
-    <a class="status-button operational" href="lmc">
-        lmc.kervian.com — Operational
-    </a>
-    
+  <main class="site-main">
+    <h1>System Status</h1>
+    <div class="container" id="status-list"></div>
+    <a class="kervian-link" href="https://kervian.com">&larr; Return to kervian.com</a>
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://kervian.com">kervian.com</a>
+    <span>&copy; 2026 Bennett</span>
+    <a href="mailto:info@kervian.com">info@kervian.com</a>
+  </footer>
+
 </div>
+
+<script src="/data.js"></script>
+<script>
+const labels = { operational: "Operational", degraded: "Degraded", outage: "Outage" };
+const list = document.getElementById("status-list");
+
+SITES.forEach(site => {
+  const a = document.createElement("a");
+  a.className = `status-button ${site.status}`;
+  a.href = `/site.html?name=${encodeURIComponent(site.name)}`;
+  a.innerHTML = `<span>${site.name}</span><span class="status-label">${labels[site.status]}</span>`;
+  list.appendChild(a);
+});
+</script>
 
 </body>
 </html>
