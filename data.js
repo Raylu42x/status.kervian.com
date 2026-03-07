@@ -36,9 +36,4 @@ const SITES = [
     status:      "degraded",
     description: "Site for the Labyrinth co-op Minecraft server.",
   },
-  {
-    name:        "savethepast.kervian.com",
-    status:      "operational",
-    description: "HTML site for an FLL innovation project.",
-  },
 ];
