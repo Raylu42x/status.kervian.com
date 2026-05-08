@@ -33,7 +33,7 @@ const SITES = [
   },
   {
     name:        "lmc.kervian.com",
-    status:      "degraded",
+    status:      "operational",
     description: "Site for the Labyrinth co-op Minecraft server.",
   },
 ];
