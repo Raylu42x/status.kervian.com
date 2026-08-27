@@ -110,7 +110,18 @@ const content = document.getElementById("content");
 
 if (!site) {
   document.title = "Site Not Found";
-  content.innerHTML = `<p class="not-found">Site "${name || ""}" not found. <a href="/" style="color:#00ff00">Back to status</a></p>`;
+  // `name` comes straight from the query string, so it must never reach
+  // innerHTML unescaped — otherwise ?name=<img src=x onerror=...> executes.
+  // Build the node instead of interpolating into markup.
+  const p = document.createElement("p");
+  p.className = "not-found";
+  p.append(`Site "${name || ""}" not found. `);
+  const back = document.createElement("a");
+  back.href = "/";
+  back.style.color = "#00ff00";
+  back.textContent = "Back to status";
+  p.append(back);
+  content.replaceChildren(p);
 } else {
   document.title = `${site.name} Status`;
   document.getElementById("header-name").textContent = site.name;
