@@ -33,13 +33,18 @@ const SITES = [
   },
   {
     name:        "docs.kervian.com",
-    status:      "operational",
+    status:      "degraded",
     description: "Documentation site for the Kervian network.",
   },
   {
     name:        "lmc.kervian.com",
     status:      "operational",
     description: "Site for the Labyrinth co-op Minecraft server.",
+  },
+  {
+    name:        "labyrinthmc.org",
+    status:      "operational",
+    description: "Primary domain for the Labyrinth Minecraft server site (mirrors lmc.kervian.com).",
   },
   {
     name:        "cms.kervian.com",
@@ -65,5 +70,6 @@ const SITES = [
     name:        "sailsofcombat.kervian.com",
     status:      "operational",
     description: "Turn-based age-of-sail gunnery game.",
+    note:        "Actively under development — expect frequent changes.",
   },
 ];
