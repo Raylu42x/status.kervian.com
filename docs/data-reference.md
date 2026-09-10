@@ -51,7 +51,17 @@ Delete the entire object block from the `SITES` array.
 | Name | Status | Description |
 |------|--------|-------------|
 | kervian.com | operational | Main Kervian homepage |
+| status.kervian.com | operational | This status page |
 | assets.kervian.com | operational | Asset hosting for the Kervian network |
 | countdown.kervian.com | operational | Countdown timer site |
-| docs.kervian.com | operational | Documentation site for the Kervian network |
-| lmc.kervian.com | degraded | Labyrinth co-op Minecraft server site |
+| docs.kervian.com | degraded | Documentation site for the Kervian network |
+| lmc.kervian.com | operational | Labyrinth co-op Minecraft server site |
+| labyrinthmc.org | operational | Primary domain for the Labyrinth Minecraft server site (mirrors lmc.kervian.com) |
+| cms.kervian.com | operational | Self-hosted CMS for the Kervian network's 11ty sites |
+| tlp.kervian.com | operational | Self-hosted student newspaper management system |
+| address.kervian.com | operational | Open addressing protocol for the near-Earth shell |
+| focus.kervian.com | operational | Generated ambient focus-music track |
+| sailsofcombat.kervian.com | operational | Turn-based age-of-sail gunnery game (under active development) |
+
+This table is a snapshot for reference — `data.js` is the actual source of truth and can drift ahead
+of this doc. If they disagree, trust `data.js`.
